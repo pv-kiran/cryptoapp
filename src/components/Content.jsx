@@ -8,8 +8,7 @@ function Content() {
         sx={{
           width: "78%",
           marginLeft: "28%",
-          padding: "1rem",
-          backgroundColor: "yellow",
+          padding: ".4rem",
         }}>
         <Outlet></Outlet>
       </Box>

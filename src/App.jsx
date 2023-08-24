@@ -3,7 +3,7 @@ export const ThemeContext = createContext();
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import AppRoutes from "./routes";
-
+import "./App.css";
 function App() {
   // The light theme is used by default
   const [isDarkTheme, setIsDarkTheme] = useState(false);

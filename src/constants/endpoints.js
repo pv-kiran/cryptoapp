@@ -10,5 +10,5 @@ export const API_ENDPOINTS = {
   FETCH_ALL:
     "/markets?vs_currency=inr&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en",
   FETCH_CRYPTO_NEWS:
-    "/all?locale=us&language=en&api_token=46sPc7xUenbrEj00lgxV1kzDiR1JWIDdtA6DqAvS&search=bitcoin",
+    "/all?locale=us&language=en&api_token=wKHei5pU7dzyCibnfLOFGF26HaHIAdXvKVpoa7j5&search=bitcoin",
 };
