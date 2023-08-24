@@ -5,14 +5,14 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
-import Forward10Icon from "@mui/icons-material/Forward10";
+import MoneyIcon from "@mui/icons-material/Money";
 import InfoIcon from "@mui/icons-material/Info";
 import { NavLink } from "react-router-dom";
 
 function VerticalNav() {
   const navLinks = [
     { text: "Home", to: "/", icon: <HomeIcon></HomeIcon> },
-    { text: "Top 10", to: "/new", icon: <Forward10Icon></Forward10Icon> },
+    { text: "Top 100", to: "/top", icon: <MoneyIcon></MoneyIcon> },
     { text: "About", to: "/about", icon: <InfoIcon></InfoIcon> },
   ];
 
@@ -20,7 +20,7 @@ function VerticalNav() {
     <>
       <Box
         sx={{
-          width: "25%",
+          width: "20%",
           position: "fixed",
           height: "auto",
         }}>
