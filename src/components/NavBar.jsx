@@ -4,8 +4,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Toggle from "./Toggle";
 import CryptoSearch from "./CryptoSearch";
+import WidgetsIcon from "@mui/icons-material/Widgets";
+import { NavigationContext } from "./Landing";
+import { useContext } from "react";
 
 function NavBar() {
+  const { toggleDrawer } = useContext(NavigationContext);
   return (
     <Box>
       <AppBar
@@ -13,19 +17,45 @@ function NavBar() {
         elevation={1}
         sx={{
           backgroundColor: (theme) =>
-            theme.palette.mode === "dark" ? "#black" : "#fff", // Adjust colors as needed
+            theme.palette.mode === "dark" ? "#222233" : "#fff", // Adjust colors as needed
         }}>
         <Toolbar>
+          <Typography
+            sx={{
+              color: (theme) =>
+                theme.palette.mode === "dark" ? "#fff" : "#474794", // Adjust colors as needed
+              flexGrow: 1,
+              display: {
+                xl: "none",
+                lg: "none",
+                md: "block",
+                sm: "block",
+                xs: "block",
+              },
+            }}>
+            <WidgetsIcon
+              sx={{ fontSize: "2.75rem", margin: ".5rem" }}
+              onClick={() => {
+                toggleDrawer(true);
+              }}></WidgetsIcon>
+          </Typography>
           <Typography
             variant="h4"
             noWrap
             component="div"
             sx={{
               flexGrow: 1,
-              color: "#777",
-              display: { xs: "none", sm: "block" },
+              color: (theme) =>
+                theme.palette.mode === "dark" ? "#fff" : "black",
+              display: {
+                xl: "block",
+                lg: "block",
+                md: "none",
+                sm: "none",
+                xs: "none",
+              },
             }}>
-            CRYPTO
+            CoinBase
           </Typography>
           <CryptoSearch></CryptoSearch>
           <Toggle></Toggle>

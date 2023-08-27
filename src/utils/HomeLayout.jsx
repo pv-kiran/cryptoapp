@@ -1,10 +1,10 @@
-import NavBar from "../components/NavBar";
+// import NavBar from "../components/NavBar";
 import LandingPage from "./../pages/LandingPage";
 
 function HomeLayout() {
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <LandingPage></LandingPage>
     </>
   );

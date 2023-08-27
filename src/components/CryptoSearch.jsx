@@ -1,20 +1,25 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { cryptoInstance } from "../api/axiosInstance";
 import { API_ENDPOINTS } from "../constants/endpoints";
 import { useNavigate } from "react-router-dom";
+import { NavigationContext } from "./Landing";
 
 const filter = createFilterOptions();
 
-function CryptoSearch() {
+function CryptoSearch({ mobile }) {
   const [value, setValue] = useState(null);
   const [topCoins, setTopCoins] = useState([]);
+
+  const { toggleDrawer } = useContext(NavigationContext);
+
   const navigate = useNavigate();
   const fetchAll = async () => {
     try {
       const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_ALL());
-      console.log(data);
       const coinData = data.map((item) => {
         return { id: item.id, name: item.name, image: item.image };
       });
@@ -32,20 +37,8 @@ function CryptoSearch() {
     <Autocomplete
       value={value}
       onChange={(event, newValue) => {
-        // console.log(newValue);
-        // if (typeof newValue === "string") {
-        //   setValue({
-        //     title: newValue,
-        //   });
-        // } else if (newValue && newValue.inputValue) {
-        //   // Create a new value from the user input
-        //   setValue({
-        //     title: newValue.inputValue,
-        //   });
-        // } else {
-        //   setValue(newValue);
-        // }
         navigate(`/coin/${newValue?.id}`);
+        toggleDrawer(false);
       }}
       filterOptions={(options, params) => {
         const filtered = filter(options, params);
@@ -94,10 +87,23 @@ function CryptoSearch() {
           />
         </li>
       )}
-      sx={{ width: 300 }}
+      sx={{
+        width: mobile ? "100%" : "25rem",
+        display: {
+          xl: "block",
+          lg: "block",
+          md: mobile ? "block" : "none",
+          sm: mobile ? "block" : "none",
+          xs: mobile ? "block" : "none",
+        },
+        height: mobile ? "" : 10,
+        marginTop: mobile ? ".5rem" : "-3.2rem",
+        border: mobile ? "2px #2c93b0 solid" : "",
+        borderRadius: ".5rem",
+      }}
       freeSolo
       renderInput={(params) => (
-        <TextField {...params} label="Search Crypto's" />
+        <TextField sx={{ border: "0" }} {...params} label="Search Crypto's" />
       )}
     />
   );

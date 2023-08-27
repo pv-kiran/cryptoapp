@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Box } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -8,8 +9,11 @@ import HomeIcon from "@mui/icons-material/Home";
 import MoneyIcon from "@mui/icons-material/Money";
 import InfoIcon from "@mui/icons-material/Info";
 import { NavLink } from "react-router-dom";
+import { NavigationContext } from "./Landing";
+import { useContext } from "react";
 
-function VerticalNav() {
+function VerticalNav({ mobile }) {
+  const { toggleDrawer } = useContext(NavigationContext);
   const navLinks = [
     { text: "Home", to: "/", icon: <HomeIcon></HomeIcon> },
     { text: "Top 100", to: "/top", icon: <MoneyIcon></MoneyIcon> },
@@ -20,15 +24,15 @@ function VerticalNav() {
     <>
       <Box
         sx={{
-          width: "20%",
-          position: "fixed",
+          width: mobile ? "100%" : "20%",
+          position: mobile ? "relative" : "fixed",
           height: "auto",
           display: {
             xl: "block",
             lg: "block",
-            md: "none",
-            sm: "none",
-            xs: "none",
+            md: mobile ? "block" : "none",
+            sm: mobile ? "block" : "none",
+            xs: mobile ? "block" : "none",
           },
         }}>
         <nav aria-label="navigation links">
@@ -40,6 +44,9 @@ function VerticalNav() {
                   key={index}
                   component={NavLink}
                   to={to}
+                  onClick={() => {
+                    toggleDrawer(false);
+                  }}
                   style={({ isActive }) => ({
                     backgroundColor: isActive ? "#e1eff2" : "",
                     borderRadius: isActive ? ".5rem" : "0",

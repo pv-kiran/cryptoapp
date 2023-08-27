@@ -26,8 +26,6 @@ function Coin() {
     }
   };
 
-  console.log(coinInfo);
-
   useEffect(() => {
     fetchCoinById(id);
   }, [id]);
@@ -139,7 +137,7 @@ function Coin() {
                     <Typography
                       variant="h5"
                       sx={{ fontWeight: "900", marginRight: "2.5rem" }}>
-                      Price Change In Last 24hrs
+                      Price Change In 24hrs
                     </Typography>
                     <Box
                       sx={{

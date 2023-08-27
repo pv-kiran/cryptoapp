@@ -64,7 +64,7 @@ function Toggle() {
             sx={{ m: 3 }}
           />
         }
-        label="MUI switch"
+        label=""
       />
     </FormGroup>
   );
