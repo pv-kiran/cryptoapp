@@ -129,9 +129,9 @@ function CoinChart({ coinId }) {
           padding: ".3rem",
           backgroundColor: "#abb4ba",
           display: {
-            lg: "block",
             xl: "block",
-            ad: "none",
+            lg: "block",
+            md: "block",
             sm: "none",
             xs: "none",
           },

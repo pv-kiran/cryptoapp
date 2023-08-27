@@ -24,7 +24,7 @@ function DataTable({ topTen }) {
         }}
         component={Paper}>
         <Table
-          size="small"
+          // size="small"
           aria-label="a dense table"
           sx={{ bgcolor: "#e1eff2", color: "blue" }}>
           <TableHead>
@@ -93,7 +93,8 @@ function DataTable({ topTen }) {
                       color: "#2c93b0",
                     }}
                     align="right">
-                    &#8377; {current_price.toLocaleString()}
+                    &#8377;
+                    {current_price.toLocaleString()}
                   </TableCell>
                   <TableCell
                     align="right"
@@ -108,7 +109,8 @@ function DataTable({ topTen }) {
                       color: "#2c93b0",
                     }}
                     align="right">
-                    &#8377; {market_cap.toLocaleString()}
+                    &#8377;
+                    {market_cap.toLocaleString()}
                   </TableCell>
                 </TableRow>
               );

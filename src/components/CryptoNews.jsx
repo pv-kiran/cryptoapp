@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { newsInstance } from "../api/axiosInstance";
 import { API_ENDPOINTS } from "../constants/endpoints";
-import { Paper, Typography } from "@mui/material";
+import { Paper, Typography, Box } from "@mui/material";
 
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
@@ -28,12 +28,19 @@ function CryptoNews() {
       <Typography variant="h4" marginBottom={1}>
         News
       </Typography>
-      <section
-        style={{
+      <Box
+        sx={{
           display: "grid",
-          gridTemplateRows: loading ? "1fr 1fr 1fr" : "1fr 1fr 1fr",
+          gridTemplateRows: loading ? "1fr 1fr 1fr" : "1fr 1fr",
           gridTemplateColumns: "1fr 1fr 1fr",
           gridGap: "1rem",
+          marginBottom: {
+            xl: "12rem",
+            lg: "12rem",
+            md: "12rem",
+            sm: "0",
+            xs: "0",
+          },
         }}>
         {loading
           ? Array.from(new Array(3)).map((item, index) => {
@@ -95,7 +102,7 @@ function CryptoNews() {
                 </Paper>
               );
             })}
-      </section>
+      </Box>
     </>
   );
 }
