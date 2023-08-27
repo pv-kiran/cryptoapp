@@ -12,7 +12,16 @@ function Error() {
         flexDirection: "column",
         height: "75vh",
       }}>
-      <Typography variant="h4" sx={{ marginBottom: ".5rem" }}>
+      <Typography
+        sx={{
+          marginBottom: ".5rem",
+          fontSize: {
+            lg: "2.5rem",
+            md: "2rem",
+            sx: "1.5rem",
+            xs: "1.5rem",
+          },
+        }}>
         Something went wrong
       </Typography>
       <Button

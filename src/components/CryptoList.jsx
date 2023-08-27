@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { cryptoInstance } from "../api/axiosInstance";
 import { API_ENDPOINTS } from "../constants/endpoints";
 
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import DataTable from "./shared/DataTable";
 import TableSkeleton from "./shared/TableSkeleton";
 
@@ -23,7 +23,17 @@ function CryptoList() {
     fetchTopTen();
   }, []);
   return (
-    <section style={{ marginTop: "-10rem", paddingBottom: "3rem" }}>
+    <Box
+      sx={{
+        marginTop: {
+          xl: "-9rem",
+          lg: "-9rem",
+          md: "-9rem",
+          sx: "3rem",
+          xs: "3rem",
+        },
+        paddingBottom: "3rem",
+      }}>
       <Typography variant="h4" sx={{ marginBottom: "1rem" }}>
         TOP 10
       </Typography>
@@ -34,7 +44,7 @@ function CryptoList() {
       ) : (
         <DataTable topTen={topTen}></DataTable>
       )}
-    </section>
+    </Box>
   );
 }
 

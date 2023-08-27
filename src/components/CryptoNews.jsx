@@ -31,20 +31,18 @@ function CryptoNews() {
       <section
         style={{
           display: "grid",
-          gridTemplateRows: loading ? "1fr .75fr" : "1fr 1fr 1fr",
+          gridTemplateRows: loading ? "1fr 1fr 1fr" : "1fr 1fr 1fr",
           gridTemplateColumns: "1fr 1fr 1fr",
           gridGap: "1rem",
         }}>
         {loading
           ? Array.from(new Array(3)).map((item, index) => {
               return (
-                <Stack spacing={0.5} key={index}>
-                  <Skeleton
-                    className={`news-${index}`}
-                    variant="rectangular"
-                    width="17rem"
-                    height="17rem"
-                  />
+                <Stack
+                  className={`skeleten-news-${index}`}
+                  spacing={0.5}
+                  key={index}>
+                  <Skeleton variant="rectangular" width="100%" height="100%" />
                 </Stack>
               );
             })

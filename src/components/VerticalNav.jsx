@@ -23,6 +23,13 @@ function VerticalNav() {
           width: "20%",
           position: "fixed",
           height: "auto",
+          display: {
+            xl: "block",
+            lg: "block",
+            md: "none",
+            sm: "none",
+            xs: "none",
+          },
         }}>
         <nav aria-label="navigation links">
           <List>

@@ -128,6 +128,13 @@ function CoinChart({ coinId }) {
           right: "2.5rem",
           padding: ".3rem",
           backgroundColor: "#abb4ba",
+          display: {
+            lg: "block",
+            xl: "block",
+            ad: "none",
+            sm: "none",
+            xs: "none",
+          },
         }}
         variant="contained"
         aria-label="outlined primary button group">

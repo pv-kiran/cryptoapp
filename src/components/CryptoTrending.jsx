@@ -33,16 +33,28 @@ function CryptoTrending() {
           flexDirection: "row",
           justifyContent: "space-between",
           marginBottom: "2.5rem",
+          flexWrap: "wrap",
         }}>
         {loading
           ? Array.from(new Array(4)).map((item, index) => {
               return (
-                <Stack spacing={0.5} key={index}>
-                  <Skeleton
-                    variant="rectangular"
-                    width="11rem"
-                    height="11rem"
-                  />
+                <Stack
+                  sx={{
+                    width: {
+                      lg: "11rem",
+                      md: "23%",
+                      sm: "48%",
+                      xs: "100%",
+                    },
+                    marginBottom: {
+                      sm: ".5rem",
+                      md: ".5rem",
+                      xs: ".5rem",
+                    },
+                  }}
+                  spacing={0.5}
+                  key={index}>
+                  <Skeleton variant="rectangular" width="100%" height="11rem" />
                 </Stack>
               );
             })
@@ -57,8 +69,14 @@ function CryptoTrending() {
                 <Paper
                   key={index}
                   elevation={2}
-                  style={{
-                    width: "11rem",
+                  sx={{
+                    // width: "11rem",
+                    width: {
+                      lg: "11rem",
+                      md: "23%",
+                      sm: "48%",
+                      xs: "100%",
+                    },
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
@@ -67,6 +85,7 @@ function CryptoTrending() {
                     backgroundColor: "#e1eff2",
                     borderRadius: ".3rem",
                     color: "#2c93b0",
+                    marginBottom: "1rem",
                   }}>
                   <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
                     {name}
