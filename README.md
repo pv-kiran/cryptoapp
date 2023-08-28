@@ -39,6 +39,6 @@ Make sure you have the following software installed before running the applicati
 ### Usage
 
 4.Start the development server:
-npm run dev
+- npm run dev
 
 Open your browser and navigate to http://localhost:5173 to access CryptoApp.
