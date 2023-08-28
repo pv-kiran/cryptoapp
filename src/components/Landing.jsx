@@ -6,6 +6,7 @@ import NavBar from "./NavBar";
 import ContextNavigation from "../context/ContextNavigation";
 
 function Landing() {
+  // landing component - rendered on the landing page
   return (
     <ContextNavigation>
       <NavBar></NavBar>

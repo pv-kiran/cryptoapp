@@ -1,10 +1,9 @@
-// import NavBar from "../components/NavBar";
 import LandingPage from "./../pages/LandingPage";
 
 function HomeLayout() {
   return (
     <>
-      {/* <NavBar /> */}
+      {/*  Application layout - includes navigation and content area  */}
       <LandingPage></LandingPage>
     </>
   );

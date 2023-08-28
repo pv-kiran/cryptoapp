@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
 
 function Content() {
+  // area where contents are getting displayed based on routes
   return (
     <>
       <Box

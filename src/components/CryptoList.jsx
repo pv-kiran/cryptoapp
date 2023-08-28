@@ -7,8 +7,12 @@ import DataTable from "./shared/DataTable";
 import TableSkeleton from "./shared/TableSkeleton";
 
 function CryptoList() {
+  // top ten crypto coins
   const [topTen, setTopTen] = useState([]);
+  // loading functinality - skeleten
   const [loading, setLoading] = useState(false);
+
+  //fetch to ten crypto coins
   const fetchTopTen = async () => {
     try {
       setLoading(true);
@@ -16,7 +20,7 @@ function CryptoList() {
       setTopTen(data);
       setLoading(false);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
   useEffect(() => {

@@ -7,8 +7,12 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 function CryptoTrending() {
+  // trending crypto
   const [trending, setTrending] = useState([]);
+  // for loading functionality - skeleton
   const [loading, setLoading] = useState(false);
+
+  // method for fetching trending cryptos
   const fetchTrending = async () => {
     try {
       setLoading(true);
@@ -19,6 +23,8 @@ function CryptoTrending() {
       console.log(err);
     }
   };
+
+  // fetch the trending cryptos
   useEffect(() => {
     fetchTrending();
   }, []);

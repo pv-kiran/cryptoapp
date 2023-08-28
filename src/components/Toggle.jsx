@@ -53,7 +53,9 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 function Toggle() {
+  // toggling feature for theme switch -light and dark
   const { isDarkTheme, changeTheme } = useContext(ThemeContext);
+
   return (
     <FormGroup sx={{ width: "5rem" }}>
       <FormControlLabel

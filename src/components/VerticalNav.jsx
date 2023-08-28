@@ -13,7 +13,10 @@ import { useContext } from "react";
 import { NavigationContext } from "../context/ContextNavigation";
 
 function VerticalNav({ mobile }) {
+  // used when rendered on the bottom swipeable area
   const { toggleDrawer } = useContext(NavigationContext);
+
+  // navigational points
   const navLinks = [
     { text: "Home", to: "/", icon: <HomeIcon></HomeIcon> },
     { text: "Top 100", to: "/top", icon: <MoneyIcon></MoneyIcon> },

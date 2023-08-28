@@ -38,12 +38,8 @@ const Puller = styled(Box)(({ theme }) => ({
 
 function Swipeable(props) {
   const { window } = props;
-  // const [open, setOpen] = useState();
 
-  // const toggleDrawer = (newOpen) => () => {
-  //   setOpen(newOpen);
-  // };
-
+  // bottom swipeable feature - opening and closing swipeable for responsive screens
   const { open, toggleDrawer } = useContext(NavigationContext);
 
   // This is used only for the example

@@ -6,6 +6,7 @@ CryptoTrending;
 
 function CryptoPage() {
   return (
+    // landing content area -  trending , news and top 10 list
     <>
       <CryptoTrending></CryptoTrending>
       <CryptoNews></CryptoNews>

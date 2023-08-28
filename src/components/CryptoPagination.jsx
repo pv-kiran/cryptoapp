@@ -4,13 +4,15 @@ import { PaginationContext } from "./HundredCrypto";
 import { useContext } from "react";
 
 function CryptoPagination() {
+  // pagination logic
   const { page, handleChange } = useContext(PaginationContext);
+
   return (
     <Stack
       sx={{
         margin: "auto",
-        // marginTop: "1rem",
-        width: { xl: "50%", lg: "50%", md: "50%", sm: "90%", xs: "90%" },
+        marginTop: "1rem",
+        width: "50%",
       }}>
       <Pagination count={10} page={page} onChange={handleChange} />
     </Stack>

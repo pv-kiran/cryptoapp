@@ -7,8 +7,13 @@ import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 
 function CryptoNews() {
+  // news data
   const [news, setNews] = useState([]);
+
+  // loading functionality - skeleten
   const [loading, setLoading] = useState(false);
+
+  // fetch all the news
   const fetchNews = async () => {
     try {
       setLoading(true);
@@ -16,7 +21,7 @@ function CryptoNews() {
       setNews(data.data.reverse());
       setLoading(false);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

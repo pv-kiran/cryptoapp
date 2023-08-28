@@ -13,10 +13,14 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Error from "./shared/Error";
 
 function Coin() {
+  // coin information
   const [coinInfo, setCoinInfo] = useState(null);
+  // coin id
   const { id } = useParams();
+  // setting the error stage
   const [error, setError] = useState(false);
 
+  // fetch the coin information
   const fetchCoinById = async (id) => {
     try {
       const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_BY_ID(id));

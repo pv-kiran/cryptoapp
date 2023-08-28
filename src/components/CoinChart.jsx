@@ -13,10 +13,13 @@ import { API_ENDPOINTS } from "../constants/endpoints";
 
 // eslint-disable-next-line react/prop-types
 function CoinChart({ coinId }) {
+  // chart data
   const [chart, setChart] = useState([]);
+  // period wise display for data - 1day , 1week , ...
   const [period, setPeriod] = useState(1);
   let chartLabel, chartData;
 
+  // time duration logic for chart display
   const timePeriod = [
     {
       period: "1D",
@@ -44,6 +47,7 @@ function CoinChart({ coinId }) {
     },
   ];
 
+  // fetch data for charts
   const fetchChartData = async (coinId) => {
     try {
       const { data } = await cryptoInstance.get(

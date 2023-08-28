@@ -45,6 +45,8 @@ body {
     text-overflow: ellipsis;
 }
 
+
+
 @media screen and (max-width: 500px) {
 
     .news-0 .news-des {
@@ -90,12 +92,15 @@ body {
 @media screen and (min-width: 900px) {
   .css-hls8jv {
       margin-top: 3rem;
-    }
+  }
+    
 }
 
 @media screen and (min-width: 1200px) {
   .css-hls8jv {
     margin-top: 3rem;
   }
-  
+    .PrivateSwipeArea-root {
+      display: none;
+    }
 }

@@ -11,12 +11,18 @@ import { NavigationContext } from "../context/ContextNavigation";
 const filter = createFilterOptions();
 
 function CryptoSearch({ mobile }) {
+  // selecting the crypto
   const [value, setValue] = useState(null);
+
+  // list the coins on the search area - auto complete
   const [topCoins, setTopCoins] = useState([]);
 
+  // handling the bottom swipeable
   const { toggleDrawer } = useContext(NavigationContext);
 
   const navigate = useNavigate();
+
+  // fetching the cryto data
   const fetchAll = async () => {
     try {
       const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_ALL());

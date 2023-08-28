@@ -9,6 +9,7 @@ import { useContext } from "react";
 import { NavigationContext } from "../context/ContextNavigation";
 
 function NavBar() {
+  // opening and closing the bottom swipeable - triggred by the icon
   const { toggleDrawer } = useContext(NavigationContext);
   return (
     <Box>
