@@ -117,7 +117,7 @@ function CoinChart({ coinId }) {
     <Paper
       style={{
         backgroundColor: "#5f7f96",
-        margin: "2rem 0",
+        marginTop: "1rem",
         position: "relative",
       }}>
       <Line

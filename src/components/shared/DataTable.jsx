@@ -21,6 +21,7 @@ function DataTable({ topTen }) {
         sx={{
           padding: ".7rem",
           bgcolor: "#e1eff2",
+          marginBottom: "2rem",
         }}
         component={Paper}>
         <Table

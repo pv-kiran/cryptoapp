@@ -35,7 +35,7 @@ function Coin() {
   }, [id]);
 
   return (
-    <>
+    <Box>
       {error ? (
         <Error></Error>
       ) : coinInfo ? (
@@ -281,7 +281,7 @@ function Coin() {
           <CircularProgress />
         </Box>
       )}
-    </>
+    </Box>
   );
 }
 

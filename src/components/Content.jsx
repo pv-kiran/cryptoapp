@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
+import Footer from "./Footer";
 
 function Content() {
   // area where contents are getting displayed based on routes
@@ -13,6 +14,7 @@ function Content() {
           padding: ".4rem",
         }}>
         <Outlet></Outlet>
+        <Footer></Footer>
       </Box>
     </>
   );
