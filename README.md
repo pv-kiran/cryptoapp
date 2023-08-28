@@ -2,7 +2,8 @@
 
 CryptoApp is a web application built using React and Vite that allows you to explore and track various cryptocurrencies. With CryptoApp, you can view real-time data, historical trends, and key statistics for different cryptocurrencies.
 
-![CryptoApp Screenshot](screenshot.png)
+<img width="947" alt="image" src="https://github.com/pv-kiran/cryptoapp/assets/106447921/c97b06f9-6af9-4f49-9292-463a511dd718">
+
 
 ## Features
 
@@ -29,10 +30,10 @@ Make sure you have the following software installed before running the applicati
    git clone https://github.com/pv-kiran/cryptoapp.git
 
 2. Navigate to the project directory:
-   cd cryptoapp
+   - cd cryptoapp
 
 3. Install the project dependencies:
-   npm install
+   -  npm install
 
 
 ### Usage
