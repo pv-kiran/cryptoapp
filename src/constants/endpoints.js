@@ -23,5 +23,5 @@ export const API_ENDPOINTS = {
     return `/${id}/ohlc?vs_currency=inr&days=${duration}`;
   },
   FETCH_CRYPTO_NEWS:
-    "/all?locale=us&language=en&api_token=wKHei5pU7dzyCibnfLOFGF26HaHIAdXvKVpoa7j5&search=bitcoin",
+    "/all?locale=us&language=en&api_token=46sPc7xUenbrEj00lgxV1kzDiR1JWIDdtA6DqAvS&search=bitcoin",
 };
