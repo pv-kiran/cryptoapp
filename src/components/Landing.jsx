@@ -2,20 +2,12 @@ import { Stack } from "@mui/material";
 import VerticalNav from "./VerticalNav";
 import Content from "./Content";
 import Swipeable from "./Swipeable";
-import { createContext, useState } from "react";
 import NavBar from "./NavBar";
-
-export const NavigationContext = createContext();
+import ContextNavigation from "../context/ContextNavigation";
 
 function Landing() {
-  const [open, setOpen] = useState(false);
-
-  const toggleDrawer = (newOpen) => {
-    setOpen(newOpen);
-  };
-
   return (
-    <NavigationContext.Provider value={{ open, toggleDrawer }}>
+    <ContextNavigation>
       <NavBar></NavBar>
       <Stack
         direction="row"
@@ -29,7 +21,7 @@ function Landing() {
         <Content></Content>
       </Stack>
       <Swipeable></Swipeable>
-    </NavigationContext.Provider>
+    </ContextNavigation>
   );
 }
 

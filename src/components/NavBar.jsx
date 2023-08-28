@@ -5,8 +5,8 @@ import Typography from "@mui/material/Typography";
 import Toggle from "./Toggle";
 import CryptoSearch from "./CryptoSearch";
 import WidgetsIcon from "@mui/icons-material/Widgets";
-import { NavigationContext } from "./Landing";
 import { useContext } from "react";
+import { NavigationContext } from "../context/ContextNavigation";
 
 function NavBar() {
   const { toggleDrawer } = useContext(NavigationContext);

@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { cryptoInstance } from "../api/axiosInstance";
 import { API_ENDPOINTS } from "../constants/endpoints";
 import { useNavigate } from "react-router-dom";
-import { NavigationContext } from "./Landing";
+import { NavigationContext } from "../context/ContextNavigation";
 
 const filter = createFilterOptions();
 
@@ -25,7 +25,7 @@ function CryptoSearch({ mobile }) {
       });
       setTopCoins(coinData);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

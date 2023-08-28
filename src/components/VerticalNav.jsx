@@ -9,8 +9,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import MoneyIcon from "@mui/icons-material/Money";
 import InfoIcon from "@mui/icons-material/Info";
 import { NavLink } from "react-router-dom";
-import { NavigationContext } from "./Landing";
 import { useContext } from "react";
+import { NavigationContext } from "../context/ContextNavigation";
 
 function VerticalNav({ mobile }) {
   const { toggleDrawer } = useContext(NavigationContext);

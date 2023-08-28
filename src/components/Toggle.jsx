@@ -3,7 +3,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch from "@mui/material/Switch";
 import { useContext } from "react";
-import { ThemeContext } from "../App";
+import { ThemeContext } from "../context/ContextTheme";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,

@@ -10,7 +10,7 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import { useContext } from "react";
 import VerticalNav from "./VerticalNav";
 import CryptoSearch from "./CryptoSearch";
-import { NavigationContext } from "./Landing";
+import { NavigationContext } from "./../context/ContextNavigation";
 
 const drawerBleeding = 56;
 

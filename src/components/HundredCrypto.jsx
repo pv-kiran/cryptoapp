@@ -22,7 +22,6 @@ function HundredCrypto() {
       const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_ALL(page));
       setTopTen(data);
     } catch (err) {
-      console.log(err);
       setError(true);
     }
   };
