@@ -26,8 +26,8 @@ function CryptoSearch({ mobile }) {
   const fetchAll = async () => {
     try {
       const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_ALL());
-      const coinData = data.map((item) => {
-        return { id: item.id, name: item.name, image: item.image };
+      const coinData = data?.data?.coins.map((item) => {
+        return { id: item.uuid, name: item.name, image: item.iconUrl };
       });
       setTopCoins(coinData);
     } catch (err) {

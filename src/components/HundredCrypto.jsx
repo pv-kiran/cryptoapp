@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { cryptoInstance } from "../api/axiosInstance";
 import { API_ENDPOINTS } from "../constants/endpoints";
-export const PaginationContext = createContext();
 
 import { Typography } from "@mui/material";
 import DataTable from "./shared/DataTable";
@@ -27,7 +26,7 @@ function HundredCrypto() {
   const fetchTopTen = async () => {
     try {
       const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_ALL(page));
-      setTopTen(data);
+      setTopTen(data?.data?.coins);
     } catch (err) {
       setError(true);
     }
@@ -49,9 +48,10 @@ function HundredCrypto() {
               Top 100 Coins
             </Typography>
             <DataTable topTen={topTen}></DataTable>
-            <PaginationContext.Provider value={{ page, handleChange }}>
-              <CryptoPagination></CryptoPagination>
-            </PaginationContext.Provider>
+
+            <CryptoPagination
+              page={page}
+              handleChange={handleChange}></CryptoPagination>
           </>
         )
       )}

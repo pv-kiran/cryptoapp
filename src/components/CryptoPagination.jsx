@@ -1,11 +1,9 @@
+/* eslint-disable react/prop-types */
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { PaginationContext } from "./HundredCrypto";
-import { useContext } from "react";
 
-function CryptoPagination() {
+function CryptoPagination({ page, handleChange }) {
   // pagination logic
-  const { page, handleChange } = useContext(PaginationContext);
 
   return (
     <Stack

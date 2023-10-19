@@ -17,7 +17,7 @@ function CryptoList() {
     try {
       setLoading(true);
       const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_TOP_10);
-      setTopTen(data);
+      setTopTen(data?.data?.coins);
       setLoading(false);
     } catch (err) {
       // console.log(err);

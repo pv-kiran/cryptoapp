@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-// eslint-disable-next-line no-unused-vars
 import Chart from "chart.js/auto";
 import { Line } from "react-chartjs-2";
 
@@ -12,38 +12,38 @@ import { cryptoInstance } from "../api/axiosInstance";
 import { API_ENDPOINTS } from "../constants/endpoints";
 
 // eslint-disable-next-line react/prop-types
-function CoinChart({ coinId }) {
+function CoinChart({ coinId, coinName }) {
   // chart data
   const [chart, setChart] = useState([]);
   // period wise display for data - 1day , 1week , ...
-  const [period, setPeriod] = useState(1);
+  const [period, setPeriod] = useState(`24h`);
   let chartLabel, chartData;
 
   // time duration logic for chart display
   const timePeriod = [
     {
       period: "1D",
-      value: 1,
+      value: `24h`,
     },
     {
       period: "7D",
-      value: 7,
+      value: `7d`,
     },
     {
       period: "1M",
-      value: 30,
+      value: `30d`,
     },
     {
-      period: "6M",
-      value: 180,
+      period: "3M",
+      value: `3m`,
     },
     {
       period: "1Y",
-      value: 365,
+      value: `1y`,
     },
     {
-      period: "ALL",
-      value: `max`,
+      period: "3Y",
+      value: `3y`,
     },
   ];
 
@@ -53,7 +53,7 @@ function CoinChart({ coinId }) {
       const { data } = await cryptoInstance.get(
         API_ENDPOINTS.FETCH_CHART_DATA(coinId, period)
       );
-      setChart(data);
+      setChart(data?.data?.history);
     } catch (err) {
       console.log(err);
     }
@@ -61,31 +61,20 @@ function CoinChart({ coinId }) {
 
   useEffect(() => {
     fetchChartData(coinId, period);
-  }, [period]);
+  }, [coinId, period]);
 
   if (chart.length > 0) {
     chartLabel = chart.map((item) => {
-      const timestamp = item[0];
-      const date = new Date(timestamp);
-      const year = date.getFullYear();
-      const month = ("0" + (date.getMonth() + 1)).slice(-2);
-      const day = ("0" + date.getDate()).slice(-2);
-      const hours = ("0" + date.getHours()).slice(-2);
-      const minutes = ("0" + date.getMinutes()).slice(-2);
-
-      if (period === 1) {
-        return `${hours}:${minutes}`;
-      }
-      return `${year}-${month}-${day}`;
+      return new Date(item.timestamp * 1000).toLocaleDateString();
     });
-    chartData = chart.map((item) => item[1]);
+    chartData = chart.map((item) => item?.price);
   }
 
   const coinChart = {
     labels: chartLabel,
     datasets: [
       {
-        label: `${coinId?.toUpperCase()} to INR chart`,
+        label: `${coinName} to USD chart`,
         data: chartData,
         borderColor: "#fff",
       },

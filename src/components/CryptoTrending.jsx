@@ -6,6 +6,7 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
+import { USDollar } from "../utils/convertor";
 function CryptoTrending() {
   // trending crypto
   const [trending, setTrending] = useState([]);
@@ -18,7 +19,7 @@ function CryptoTrending() {
       setLoading(true);
       const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_TRENDING);
       setLoading(false);
-      setTrending(data);
+      setTrending(data?.data?.coins);
     } catch (err) {
       console.log(err);
     }
@@ -65,12 +66,7 @@ function CryptoTrending() {
               );
             })
           : trending.map((crypto, index) => {
-              const {
-                name,
-                image,
-                current_price,
-                price_change_percentage_24h,
-              } = crypto;
+              const { name, iconUrl, price, change } = crypto;
               return (
                 <Paper
                   key={index}
@@ -103,10 +99,10 @@ function CryptoTrending() {
                       alignItems: "center",
                     }}>
                     <Typography variant="h6" sx={{ fontWeight: "lighten" }}>
-                      &#8377; {current_price?.toLocaleString()}
+                      {USDollar.format(price)}
                     </Typography>
                     <img
-                      src={image}
+                      src={iconUrl}
                       alt="coin image"
                       style={{ height: "1.6rem", width: "1.6rem" }}
                     />
@@ -119,7 +115,7 @@ function CryptoTrending() {
                       justifyContent: "start",
                       marginLeft: "-.7rem",
                     }}>
-                    {price_change_percentage_24h > 0 ? (
+                    {change > 0 ? (
                       <ArrowDropUpIcon
                         fontSize="large"
                         sx={{
@@ -133,7 +129,7 @@ function CryptoTrending() {
                         }}></ArrowDropDownIcon>
                     )}
 
-                    {`${parseFloat(price_change_percentage_24h).toFixed(2)}%`}
+                    {`${parseFloat(change).toFixed(2)}%`}
                   </Typography>
                 </Paper>
               );

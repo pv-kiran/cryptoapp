@@ -7,6 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
+import { USDollar } from "../../utils/convertor";
 
 const cellStyle = { fontSize: "1rem", color: "#2c93b0", fontWeight: "400" };
 
@@ -51,14 +52,7 @@ function DataTable({ topTen }) {
           </TableHead>
           <TableBody>
             {topTen.map((crypto, index) => {
-              const {
-                id,
-                name,
-                image,
-                current_price,
-                market_cap,
-                price_change_percentage_24h,
-              } = crypto;
+              const { uuid, name, iconUrl, price, marketCap, change } = crypto;
               return (
                 <TableRow
                   key={index}
@@ -69,7 +63,7 @@ function DataTable({ topTen }) {
                   <TableCell
                     component="th"
                     scope="row"
-                    onClick={() => handleClick(id)}
+                    onClick={() => handleClick(uuid)}
                     sx={{
                       display: "flex",
                       justifyContent: "start",
@@ -79,7 +73,7 @@ function DataTable({ topTen }) {
                       "&:hover": { textDecoration: "underline" },
                     }}>
                     <img
-                      src={image}
+                      src={iconUrl}
                       alt="image"
                       style={{
                         width: "1rem",
@@ -94,24 +88,21 @@ function DataTable({ topTen }) {
                       color: "#2c93b0",
                     }}
                     align="right">
-                    &#8377;
-                    {current_price.toLocaleString()}
+                    {USDollar.format(price)}
                   </TableCell>
                   <TableCell
                     align="right"
                     sx={{
-                      color:
-                        price_change_percentage_24h > 0 ? "#79d47c" : "#de4a33",
+                      color: change > 0 ? "#79d47c" : "#de4a33",
                     }}>
-                    {`${parseFloat(price_change_percentage_24h).toFixed(2)}%`}
+                    {`${parseFloat(change).toFixed(2)}%`}
                   </TableCell>
                   <TableCell
                     sx={{
                       color: "#2c93b0",
                     }}
                     align="right">
-                    &#8377;
-                    {market_cap.toLocaleString()}
+                    {USDollar.format(marketCap)}
                   </TableCell>
                 </TableRow>
               );
