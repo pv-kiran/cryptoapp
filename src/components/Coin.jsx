@@ -26,11 +26,20 @@ function Coin() {
   const fetchCoinById = async (id) => {
     try {
       const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_BY_ID(id));
+      data?.data?.coin?.sparkline?.sort((a, b) => {
+        return a - b;
+      });
       setCoinInfo(data.data.coin);
     } catch (err) {
       setError(true);
     }
   };
+
+  // const priceChangeSort = (priceChange) => {
+  //   return priceChange.sort((a, b) => {
+  //     return a - b;
+  //   });
+  // };
 
   useEffect(() => {
     fetchCoinById(id);
@@ -134,18 +143,30 @@ function Coin() {
                     margin: "1rem 0",
                   }}>
                   <Typography>
+                    {/* {USDollar.format(
+                      coinInfo?.sparkline[coinInfo?.sparkline?.length - 1]
+                    )} */}
+                    {/* {USDollar.format(priceChangeSort(coinInfo?.sparkline)[0])} */}
+                    {USDollar.format(coinInfo?.sparkline[0])}
+                  </Typography>
+                  <Typography>24hrs</Typography>
+                  <Typography>
+                    {/* {USDollar.format(
+                      priceChangeSort(coinInfo?.sparkline)[
+                        coinInfo?.sparkline?.length - 1
+                      ]
+                    )} */}
+                    {/* {USDollar.format(coinInfo?.sparkline[0])} */}
                     {USDollar.format(
                       coinInfo?.sparkline[coinInfo?.sparkline?.length - 1]
                     )}
                   </Typography>
-                  <Typography>24hrs</Typography>
-                  <Typography>
-                    {USDollar.format(coinInfo?.sparkline[0])}
-                  </Typography>
                 </Box>
                 <PriceChange
-                  low={coinInfo?.sparkline[coinInfo?.sparkline?.length - 1]}
-                  high={coinInfo?.sparkline[0]}></PriceChange>
+                  low={coinInfo?.sparkline[0]}
+                  high={
+                    coinInfo?.sparkline[coinInfo?.sparkline?.length - 1]
+                  }></PriceChange>
               </Paper>
             </Stack>
             <Stack
