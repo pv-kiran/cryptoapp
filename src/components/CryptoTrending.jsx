@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { cryptoInstance } from "../api/axiosInstance";
 import { API_ENDPOINTS } from "../constants/endpoints";
 import { Paper, Typography } from "@mui/material";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
@@ -7,28 +5,9 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Skeleton from "@mui/material/Skeleton";
 import Stack from "@mui/material/Stack";
 import { USDollar } from "../utils/convertor";
+import useFetch from "../hooks/useFetch";
 function CryptoTrending() {
-  // trending crypto
-  const [trending, setTrending] = useState([]);
-  // for loading functionality - skeleton
-  const [loading, setLoading] = useState(false);
-
-  // method for fetching trending cryptos
-  const fetchTrending = async () => {
-    try {
-      setLoading(true);
-      const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_TRENDING);
-      setLoading(false);
-      setTrending(data?.data?.coins);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  // fetch the trending cryptos
-  useEffect(() => {
-    fetchTrending();
-  }, []);
+  const { data, loading } = useFetch(API_ENDPOINTS.FETCH_TRENDING);
   return (
     <>
       <Typography variant="h4" marginBottom={1}>
@@ -65,7 +44,7 @@ function CryptoTrending() {
                 </Stack>
               );
             })
-          : trending.map((crypto, index) => {
+          : data?.coins?.map((crypto, index) => {
               const { name, iconUrl, price, change } = crypto;
               return (
                 <Paper

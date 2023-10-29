@@ -7,6 +7,7 @@ import { cryptoInstance } from "../api/axiosInstance";
 import { API_ENDPOINTS } from "../constants/endpoints";
 import { useNavigate } from "react-router-dom";
 import { NavigationContext } from "../context/ContextNavigation";
+import useFetch from "../hooks/useFetch";
 
 const filter = createFilterOptions();
 
@@ -22,22 +23,18 @@ function CryptoSearch({ mobile }) {
 
   const navigate = useNavigate();
 
-  // fetching the cryto data
-  const fetchAll = async () => {
-    try {
-      const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_ALL());
-      const coinData = data?.data?.coins.map((item) => {
-        return { id: item.uuid, name: item.name, image: item.iconUrl };
-      });
-      setTopCoins(coinData);
-    } catch (err) {
-      // console.log(err);
-    }
+  const { data } = useFetch(API_ENDPOINTS.FETCH_ALL());
+
+  const setCoins = () => {
+    const coinData = data?.coins?.map((item) => {
+      return { id: item.uuid, name: item.name, image: item.iconUrl };
+    });
+    setTopCoins(coinData);
   };
 
   useEffect(() => {
-    fetchAll();
-  }, []);
+    setCoins();
+  }, [data]);
 
   return (
     <Autocomplete

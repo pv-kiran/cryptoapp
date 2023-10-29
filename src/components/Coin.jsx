@@ -1,7 +1,5 @@
 import { useParams } from "react-router-dom";
-import { cryptoInstance } from "../api/axiosInstance";
 import { API_ENDPOINTS } from "../constants/endpoints";
-import { useEffect, useState } from "react";
 
 import Paper from "@mui/material/Paper";
 import { Box, Chip, Stack, Typography } from "@mui/material";
@@ -13,43 +11,24 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Error from "./shared/Error";
 import CoinOhce from "./CoinOhce";
 import { USDollar } from "../utils/convertor";
+import useFetch from "../hooks/useFetch";
 
 function Coin() {
-  // coin information
-  const [coinInfo, setCoinInfo] = useState(null);
-  // coin id
   const { id } = useParams();
-  // setting the error stage
-  const [error, setError] = useState(false);
 
-  // fetch the coin information
-  const fetchCoinById = async (id) => {
-    try {
-      const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_BY_ID(id));
-      data?.data?.coin?.sparkline?.sort((a, b) => {
-        return a - b;
-      });
-      setCoinInfo(data.data.coin);
-    } catch (err) {
-      setError(true);
-    }
-  };
+  const { data, error } = useFetch(API_ENDPOINTS.FETCH_BY_ID(id));
 
-  // const priceChangeSort = (priceChange) => {
-  //   return priceChange.sort((a, b) => {
-  //     return a - b;
-  //   });
-  // };
-
-  useEffect(() => {
-    fetchCoinById(id);
-  }, [id]);
+  // // const priceChangeSort = (priceChange) => {
+  // //   return priceChange.sort((a, b) => {
+  // //     return a - b;
+  // //   });
+  // // };
 
   return (
     <Box>
       {error ? (
         <Error></Error>
-      ) : coinInfo ? (
+      ) : data.coin ? (
         <>
           <section>
             <Stack
@@ -82,7 +61,7 @@ function Coin() {
                     alignItems: "center",
                   }}>
                   <img
-                    src={coinInfo?.iconUrl}
+                    src={data.coin?.iconUrl}
                     style={{
                       width: "1.7rem",
                       height: "1.7rem",
@@ -96,8 +75,8 @@ function Coin() {
                       textTransform: "uppercase",
                       fontWeight: "900",
                     }}>
-                    {coinInfo?.name}
-                    {/* <span>({coinInfo?.symbol})</span> */}
+                    {data.coin?.name}
+                    {/* <span>({data.coin?.symbol})</span> */}
                   </Typography>
                 </Box>
                 <Chip
@@ -106,7 +85,7 @@ function Coin() {
                     margin: ".75rem 0",
                     color: "white",
                   }}
-                  label={`Rank #${coinInfo.rank}`}></Chip>
+                  label={`Rank #${data.coin.rank}`}></Chip>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Typography
                     variant="h6"
@@ -114,9 +93,9 @@ function Coin() {
                       fontWeight: "900",
                       marginRight: "1rem",
                     }}>
-                    {USDollar.format(coinInfo?.price)}
+                    {USDollar.format(data.coin?.price)}
                   </Typography>
-                  <ChangeInfo cap_change={coinInfo?.change}></ChangeInfo>
+                  <ChangeInfo cap_change={data.coin?.change}></ChangeInfo>
                 </Box>
               </Paper>
               <Paper
@@ -144,28 +123,28 @@ function Coin() {
                   }}>
                   <Typography>
                     {/* {USDollar.format(
-                      coinInfo?.sparkline[coinInfo?.sparkline?.length - 1]
+                      data.coin?.sparkline[data.coin?.sparkline?.length - 1]
                     )} */}
-                    {/* {USDollar.format(priceChangeSort(coinInfo?.sparkline)[0])} */}
-                    {USDollar.format(coinInfo?.sparkline[0])}
+                    {/* {USDollar.format(priceChangeSort(data.coin?.sparkline)[0])} */}
+                    {USDollar.format(data.coin?.sparkline[0])}
                   </Typography>
                   <Typography>24hrs</Typography>
                   <Typography>
                     {/* {USDollar.format(
-                      priceChangeSort(coinInfo?.sparkline)[
-                        coinInfo?.sparkline?.length - 1
+                      priceChangeSort(data.coin?.sparkline)[
+                        data.coin?.sparkline?.length - 1
                       ]
                     )} */}
-                    {/* {USDollar.format(coinInfo?.sparkline[0])} */}
+                    {/* {USDollar.format(data.coin?.sparkline[0])} */}
                     {USDollar.format(
-                      coinInfo?.sparkline[coinInfo?.sparkline?.length - 1]
+                      data.coin?.sparkline[data.coin?.sparkline?.length - 1]
                     )}
                   </Typography>
                 </Box>
                 <PriceChange
-                  low={coinInfo?.sparkline[0]}
+                  low={data.coin?.sparkline[0]}
                   high={
-                    coinInfo?.sparkline[coinInfo?.sparkline?.length - 1]
+                    data.coin?.sparkline[data.coin?.sparkline?.length - 1]
                   }></PriceChange>
               </Paper>
             </Stack>
@@ -202,7 +181,7 @@ function Coin() {
                   }}>
                   <Typography>Total Supply</Typography>
                   <Typography>
-                    {parseFloat(coinInfo?.supply?.total).toFixed(2)}
+                    {parseFloat(data.coin?.supply?.total).toFixed(2)}
                   </Typography>
                 </Box>
                 <Box
@@ -213,8 +192,8 @@ function Coin() {
                   }}>
                   <Typography>Max Supply</Typography>
                   <Typography>
-                    {coinInfo?.supply?.max
-                      ? parseFloat(coinInfo?.supply?.max).toFixed(2)
+                    {data.coin?.supply?.max
+                      ? parseFloat(data.coin?.supply?.max).toFixed(2)
                       : "NIL"}
                   </Typography>
                 </Box>
@@ -226,7 +205,7 @@ function Coin() {
                   }}>
                   <Typography>Circulating Supply</Typography>
                   <Typography>
-                    {parseFloat(coinInfo?.supply?.circulating).toFixed(2)}
+                    {parseFloat(data.coin?.supply?.circulating).toFixed(2)}
                   </Typography>
                 </Box>
               </Paper>
@@ -234,8 +213,8 @@ function Coin() {
           </section>
 
           <CoinChart
-            coinId={coinInfo?.uuid}
-            coinName={coinInfo?.name}></CoinChart>
+            coinId={data.coin?.uuid}
+            coinName={data.coin?.name}></CoinChart>
         </>
       ) : (
         <Box

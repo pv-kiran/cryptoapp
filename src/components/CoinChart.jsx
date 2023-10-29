@@ -7,16 +7,17 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 
 import { Paper } from "@mui/material";
-import { useEffect, useState } from "react";
-import { cryptoInstance } from "../api/axiosInstance";
+import { useState } from "react";
 import { API_ENDPOINTS } from "../constants/endpoints";
+import useFetch from "../hooks/useFetch";
 
 // eslint-disable-next-line react/prop-types
 function CoinChart({ coinId, coinName }) {
-  // chart data
-  const [chart, setChart] = useState([]);
   // period wise display for data - 1day , 1week , ...
   const [period, setPeriod] = useState(`24h`);
+  //chart data
+  const { data } = useFetch(API_ENDPOINTS.FETCH_CHART_DATA(coinId, period));
+
   let chartLabel, chartData;
 
   // time duration logic for chart display
@@ -47,27 +48,11 @@ function CoinChart({ coinId, coinName }) {
     },
   ];
 
-  // fetch data for charts
-  const fetchChartData = async (coinId) => {
-    try {
-      const { data } = await cryptoInstance.get(
-        API_ENDPOINTS.FETCH_CHART_DATA(coinId, period)
-      );
-      setChart(data?.data?.history);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    fetchChartData(coinId, period);
-  }, [coinId, period]);
-
-  if (chart.length > 0) {
-    chartLabel = chart.map((item) => {
+  if (data?.history?.length > 0) {
+    chartLabel = data?.history?.map((item) => {
       return new Date(item.timestamp * 1000).toLocaleDateString();
     });
-    chartData = chart.map((item) => item?.price);
+    chartData = data?.history?.map((item) => item?.price);
   }
 
   const coinChart = {

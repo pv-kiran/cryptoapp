@@ -51,7 +51,7 @@ function DataTable({ topTen }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {topTen.map((crypto, index) => {
+            {topTen?.map((crypto, index) => {
               const { uuid, name, iconUrl, price, marketCap, change } = crypto;
               return (
                 <TableRow

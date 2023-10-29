@@ -1,31 +1,12 @@
-import { useEffect, useState } from "react";
-import { cryptoInstance } from "../api/axiosInstance";
 import { API_ENDPOINTS } from "../constants/endpoints";
 
 import { Box, Typography } from "@mui/material";
 import DataTable from "./shared/DataTable";
 import TableSkeleton from "./shared/TableSkeleton";
+import useFetch from "../hooks/useFetch";
 
 function CryptoList() {
-  // top ten crypto coins
-  const [topTen, setTopTen] = useState([]);
-  // loading functinality - skeleten
-  const [loading, setLoading] = useState(false);
-
-  //fetch to ten crypto coins
-  const fetchTopTen = async () => {
-    try {
-      setLoading(true);
-      const { data } = await cryptoInstance.get(API_ENDPOINTS.FETCH_TOP_10);
-      setTopTen(data?.data?.coins);
-      setLoading(false);
-    } catch (err) {
-      // console.log(err);
-    }
-  };
-  useEffect(() => {
-    fetchTopTen();
-  }, []);
+  const { data, loading } = useFetch(API_ENDPOINTS.FETCH_TOP_10);
   return (
     <Box
       sx={{
@@ -46,7 +27,7 @@ function CryptoList() {
           return <TableSkeleton key={index}></TableSkeleton>;
         })
       ) : (
-        <DataTable topTen={topTen}></DataTable>
+        <DataTable topTen={data?.coins}></DataTable>
       )}
     </Box>
   );
